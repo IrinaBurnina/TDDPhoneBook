@@ -1,5 +1,6 @@
 import org.testng.annotations.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.testng.AssertJUnit.assertTrue;
@@ -11,8 +12,8 @@ public class PhoneBookTest {
         String name = "Алиса";
         String phoneNumber = "2231396";
         PhoneBook phoneBook = new PhoneBook();
-        int result = phoneBook.add();
-        Map<String, String> mapPhonebookTest = null;
+        int result = phoneBook.add(name,phoneNumber);
+        Map<String, String> mapPhonebookTest = new HashMap<>();
         mapPhonebookTest.put(phoneNumber, name);
         assertTrue("Неверное добавление контакта", result== mapPhonebookTest.size());
     }
@@ -21,9 +22,9 @@ public class PhoneBookTest {
         String name = "Алиса";
         String phoneNumber = "2231396";
         PhoneBook phoneBook=new PhoneBook();
-        int result= phoneBook.add();
-        int resultDoubleAdd=phoneBook.add();
-        Map<String, String> mapPhonebookTest = null;
+        int result= phoneBook.add(phoneNumber,name);
+        int resultDoubleAdd=phoneBook.add(phoneNumber,name);
+        Map<String, String> mapPhonebookTest = new HashMap<>();
         mapPhonebookTest.put(phoneNumber, name);
         assertTrue("Неуникальное добавление контакта",resultDoubleAdd== mapPhonebookTest.size());
 
