@@ -41,4 +41,13 @@ public class PhoneBook {
         }
         return null;
     }
+
+    public void printAllNames() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Контакты телефонной книги: \n");
+        for (Map.Entry<String, String> contact : book.entrySet()) {
+            sb.append("Контакт : имя = " + contact.getKey() + "-> номер = " + contact.getValue());
+        }
+        System.out.println(sb);
+    }
 }
