@@ -5,21 +5,21 @@ public class PhoneBook {
     public PhoneBook() {
     }
 
-    private static Map<String, String> book = new HashMap<>();
+    private static final Map<String, String> book = new HashMap<>();
 
     public int add(String phoneNumber, String name) {
         if (!book.containsKey(phoneNumber)) {
-            synchronized (book) {
-                if (!book.containsKey(phoneNumber)) {
-                    book.put(phoneNumber, name);
-                }
+
+            if (!book.containsKey(phoneNumber)) {
+                book.put(phoneNumber, name);
             }
+
         } else {
-            synchronized (book) {
-                if (book.containsValue(phoneNumber)) {
-                    book.replace(phoneNumber, book.get(phoneNumber), name);
-                }
+
+            if (book.containsValue(phoneNumber)) {
+                book.replace(phoneNumber, book.get(phoneNumber), name);
             }
+
         }
         return book.size();
     }
@@ -34,7 +34,7 @@ public class PhoneBook {
     public String findByName(String name) {
         if (book.containsValue(name)) {
             for (String phoneNumber : book.keySet()) {
-                if (name == book.get(phoneNumber)) {
+                if (name.equals(book.get(phoneNumber))) {
                     return phoneNumber;
                 }
             }
@@ -46,7 +46,10 @@ public class PhoneBook {
         StringBuilder sb = new StringBuilder();
         sb.append("Контакты телефонной книги: \n");
         for (Map.Entry<String, String> contact : book.entrySet()) {
-            sb.append("Контакт : имя = " + contact.getKey() + "-> номер = " + contact.getValue());
+            sb.append("Контакт : имя = ")
+                    .append(contact.getKey())
+                    .append("-> номер = ")
+                    .append(contact.getValue());
         }
         System.out.println(sb);
     }
