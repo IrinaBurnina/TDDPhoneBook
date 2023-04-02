@@ -32,6 +32,13 @@ public class PhoneBook {
     }
 
     public String findByName(String name) {
+        if (book.containsValue(name)) {
+            for (String phoneNumber : book.keySet()) {
+                if (name == book.get(phoneNumber)) {
+                    return phoneNumber;
+                }
+            }
+        }
         return null;
     }
 }
