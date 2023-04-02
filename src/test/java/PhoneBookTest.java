@@ -35,4 +35,14 @@ public class PhoneBookTest {
         String testedName = phoneBook.findByNumber(phoneNumber);
         assertTrue("Не найдено имя по номеру контакта", testedName == name);
     }
+
+    @Test
+    public void findByName() {
+        String name = "Алиса";
+        String phoneNumber = "2231396";
+        PhoneBook phoneBook = new PhoneBook();
+        phoneBook.add(phoneNumber, name);
+        String testedPhoneNumber = phoneBook.findByName(name);
+        assertTrue("Не найдено имя по номеру контакта", testedPhoneNumber == phoneNumber);
+    }
 }
